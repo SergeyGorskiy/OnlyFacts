@@ -1,6 +1,9 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OnlyFacts.Web.Data;
 using Serilog;
 using Serilog.Events;
 
@@ -8,7 +11,7 @@ namespace OnlyFacts.Web
 {
     public class Program
     {
-        public static int Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
@@ -19,7 +22,16 @@ namespace OnlyFacts.Web
             try
             {
                 Log.Information("Starting web host");
-                CreateHostBuilder(args).Build().Run();
+
+                var host = CreateHostBuilder(args).Build();
+
+                using (var scope = host.Services.CreateScope())
+                {
+                    await DataInitializer.InitializeAsync(scope.ServiceProvider);
+                }
+
+                host.Run();
+                
                 return 0;
             }
             catch (Exception ex)
