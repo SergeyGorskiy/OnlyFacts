@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using OnlyFacts.Web.Models;
 using System.Diagnostics;
+using OnlyFacts.Web.ViewModels;
 
 namespace OnlyFacts.Web.Controllers
 {

@@ -36,6 +36,8 @@ namespace OnlyFacts.Web
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddAutoMapper(typeof(Startup).Assembly);
+
             services.AddControllersWithViews();
         }
 

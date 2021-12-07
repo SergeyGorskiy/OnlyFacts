@@ -1,6 +1,4 @@
-using System;
-
-namespace OnlyFacts.Web.Models
+namespace OnlyFacts.Web.ViewModels
 {
     public class ErrorViewModel
     {
