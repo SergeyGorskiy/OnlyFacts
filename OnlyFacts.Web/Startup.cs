@@ -50,7 +50,7 @@ namespace OnlyFacts.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Site/Error");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -64,8 +64,21 @@ namespace OnlyFacts.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "index",
+                    pattern: "{controller=Site}/{action=Index}/{tag:regex([a-z¿-ﬂ])}/{search:regex([a-z¿-ﬂ])}/{pageIndex:int?}");
+
+                endpoints.MapControllerRoute(
+                    name: "index",
+                    pattern: "{controller=Site}/{action=Index}/{tag:regex([a-z¿-ﬂ])}/{pageIndex:int?}");
+
+                endpoints.MapControllerRoute(
+                    name: "index",
+                    pattern: "{controller=Site}/{action=Index}/{pageIndex:int?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Site}/{action=Index}/{id?}");
+
                 endpoints.MapRazorPages();
             });
         }
