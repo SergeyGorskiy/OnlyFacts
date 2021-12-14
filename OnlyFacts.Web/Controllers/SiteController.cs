@@ -1,11 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using MediatR;
+using OnlyFacts.Web.Mediatr;
 using OnlyFacts.Web.ViewModels;
 
 namespace OnlyFacts.Web.Controllers
 {
     public class SiteController : Controller
     {
+        private readonly IMediator _mediator;
+
+        public SiteController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         public IActionResult Index(int? pageIndex, string tag, string search)
         {
             ViewData["Index"] = pageIndex;
@@ -16,8 +26,9 @@ namespace OnlyFacts.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
+
             return View();
         }
 

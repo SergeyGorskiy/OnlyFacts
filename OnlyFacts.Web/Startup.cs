@@ -1,3 +1,5 @@
+using Calabonga.AspNetCore.Controllers.Extensions;
+using Calabonga.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -32,11 +34,14 @@ namespace OnlyFacts.Web
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            services.AddUnitOfWork<ApplicationDbContext>();
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddAutoMapper(typeof(Startup));
+            services.AddCommandAndQueries(typeof(Startup).Assembly);
 
             services.AddControllersWithViews();
         }
