@@ -9,24 +9,7 @@ namespace OnlyFacts.Web.Controllers
 {
     public class SiteController : Controller
     {
-        private readonly IMediator _mediator;
-
-        public SiteController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-        public IActionResult Index(int? pageIndex, string tag, string search)
-        {
-            ViewData["Index"] = pageIndex;
-            ViewData["Tag"] = tag;
-            ViewData["Search"] = search;
-            
-
-            return View();
-        }
-
-        public async Task<IActionResult> Privacy()
+        public IActionResult Privacy()
         {
 
             return View();
