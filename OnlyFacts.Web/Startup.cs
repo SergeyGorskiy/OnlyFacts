@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnlyFacts.Web.Data;
+using OnlyFacts.Web.Infrastructure.TagHelpers.PagedListTagHelper;
 
 namespace OnlyFacts.Web
 {
@@ -44,6 +45,8 @@ namespace OnlyFacts.Web
             services.AddCommandAndQueries(typeof(Startup).Assembly);
 
             services.AddControllersWithViews();
+
+            services.AddTransient<IPagerTagHelperService, PagerTagHelperService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
