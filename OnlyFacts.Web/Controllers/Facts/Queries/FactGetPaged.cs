@@ -15,7 +15,7 @@ namespace OnlyFacts.Web.Controllers.Facts.Queries
     {
         public FactGetPagedRequest(int pageIndex, string? tag, string? search)
         {
-            PageIndex = pageIndex;
+            PageIndex = pageIndex - 1 < 0 ? 0 : pageIndex - 1;
             Tag = tag;
             Search = search;
         }
