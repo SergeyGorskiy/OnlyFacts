@@ -30,6 +30,12 @@ namespace OnlyFacts.Web
                 config.Password.RequireUppercase = false;
             });
 
+            services.AddRouting(config =>
+            {
+                config.LowercaseQueryStrings = true;
+                config.LowercaseUrls = true;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("OnlyFactsConnection")));
 
